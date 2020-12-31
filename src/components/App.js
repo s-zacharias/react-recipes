@@ -1,10 +1,14 @@
-import React from 'react';
-import Ingredients from './Ingredients';
+import React, { useState } from 'react';
+import Pantry from './Pantry';
+import FetchRecipes from './Recipes/FetchRecipes';
 
 const App = () => {
+  const [ingredients, setIngredients] = useState([]);
   return (
     <div>
-      <Ingredients />
+      <h1>App</h1>
+      <Pantry ingredients={ingredients} setIngredients={setIngredients} />
+      <FetchRecipes ingredients={ingredients} />
     </div>
   );
 };
