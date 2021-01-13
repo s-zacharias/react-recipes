@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
 
 const NewIngredient = ({ onFormSubmit }) => {
   const [ingredient, setIngredient] = useState('');
@@ -12,11 +13,14 @@ const NewIngredient = ({ onFormSubmit }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input
-          value={ingredient}
-          onChange={(e) => setIngredient(e.target.value)}
-        />
-        <button>Add</button>
+        <FormControl>
+          <InputLabel>Add to Your Pantry</InputLabel>
+          <Input
+            value={ingredient}
+            onChange={(e) => setIngredient(e.target.value)}
+          />
+          <Button type="submit">Add</Button>
+        </FormControl>
       </form>
     </div>
   );
