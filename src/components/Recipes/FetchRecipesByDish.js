@@ -58,10 +58,26 @@ const FetchRecipesByDish = ({ saved, setSaved }) => {
 
   return (
     <div>
-      <Typography variant="h3">Recipe Results by Dish</Typography>
-      <SearchBar dish={dish} setDish={setDish} onFormSubmit={onFormSubmit} />
-      <Grid container justify="center" spacing={2}>
-        {renderRecipeList}
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        spacing={2}
+        style={{ minHeight: '100vh' }}
+      >
+        <Grid item>
+          <Typography variant="h3">Recipe Results by Dish</Typography>
+        </Grid>
+        <Grid item>
+          <SearchBar
+            dish={dish}
+            setDish={setDish}
+            onFormSubmit={onFormSubmit}
+          />
+        </Grid>
+        <Grid container justify="center" spacing={2}>
+          {renderRecipeList}
+        </Grid>
       </Grid>
     </div>
   );

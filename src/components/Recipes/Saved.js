@@ -20,7 +20,17 @@ const Saved = ({ saved, setSaved }) => {
     });
     return (
       <div>
-        <Typography variant="h3">Saved Recipes</Typography>
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          spacing={2}
+          style={{ minHeight: '100vh' }}
+        >
+          <Grid item>
+            <Typography variant="h3">Saved Recipes</Typography>
+          </Grid>
+        </Grid>
         <Grid container justify="center" spacing={2}>
           {renderSavedList}
         </Grid>
@@ -30,7 +40,19 @@ const Saved = ({ saved, setSaved }) => {
     console.log(saved);
     return (
       <div>
-        <Typography variant="h3">Save Some Recipes!</Typography>
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+          spacing={2}
+        >
+          <Grid item>
+            <Typography variant="h4" style={{ textAlign: 'center' }}>
+              Save Some Recipes First!
+            </Typography>
+          </Grid>
+        </Grid>
       </div>
     );
   }

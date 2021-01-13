@@ -1,6 +1,7 @@
 import React from 'react';
 import NewIngredient from './NewIngredient';
 import CurrentList from './CurrentList';
+import { Grid, Typography } from '@material-ui/core';
 
 const Pantry = ({ ingredients, setIngredients }) => {
   const onFormSubmit = (ingredient) => {
@@ -8,8 +9,26 @@ const Pantry = ({ ingredients, setIngredients }) => {
   };
   return (
     <div>
-      <NewIngredient onFormSubmit={onFormSubmit} />
-      <CurrentList ingredients={ingredients} setIngredients={setIngredients} />
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        spacing={2}
+        style={{ minHeight: '100vh' }}
+      >
+        <Grid item>
+          <Typography variant="h4">Add Ingredients to Your Pantry</Typography>
+        </Grid>
+        <Grid item>
+          <NewIngredient onFormSubmit={onFormSubmit} />
+        </Grid>
+        <Grid item>
+          <CurrentList
+            ingredients={ingredients}
+            setIngredients={setIngredients}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 };

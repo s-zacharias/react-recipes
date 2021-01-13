@@ -65,7 +65,11 @@ const FetchRecipesByIngredients = ({ ingredients, saved, setSaved }) => {
 
   return (
     <div>
-      <Typography variant="h3">Recipe Results by Ingredient</Typography>
+      <Grid container direction="column" alignItems="center" spacing={2}>
+        <Grid item>
+          <Typography variant="h3">Recipe Results by Ingredients</Typography>
+        </Grid>
+      </Grid>
       <Grid container justify="center" spacing={2}>
         {renderRecipeList}
       </Grid>
