@@ -15,6 +15,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,6 @@ const RecipeCard = ({ index, recipe, saved, setSaved }) => {
 
   const onExpandClick = () => {
     setExpanded(!expanded);
-    console.log('expanded', expanded);
   };
 
   const renderIngredients = recipe.extendedIngredients.map((el) => {
@@ -78,42 +78,58 @@ const RecipeCard = ({ index, recipe, saved, setSaved }) => {
     }
   };
 
+  const renderTitle = () => {
+    if (recipe.title.length > 25) {
+      return recipe.title.slice(0, 25) + '...';
+    } else {
+      return recipe.title;
+    }
+  };
+
   return (
     <div>
-      <Card className={classes.root}>
-        <CardHeader
-          title={<Link href={recipe.sourceUrl}>{recipe.title}</Link>}
-        ></CardHeader>
-        <CardMedia
-          className={classes.media}
-          image={recipe.image}
-          title={recipe.title}
-        />
-        <CardContent>
-          <Typography>Ready in {recipe.readyInMinutes} Minutes</Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onClick={handleSave}>
-            {renderFavButton()}
-          </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={onExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Grid item style={{ display: 'flex' }}>
+        <Card className={classes.root}>
+          <CardHeader
+            title={<Link href={recipe.sourceUrl}>{renderTitle()}</Link>}
+            titleTypographyProps={{ variant: 'h6' }}
+            style={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              height: 30,
+            }}
+          ></CardHeader>
+          <CardMedia
+            className={classes.media}
+            image={recipe.image}
+            title={recipe.title}
+          />
           <CardContent>
-            <Typography paragraph>Ingredients:</Typography>
-            {renderIngredients}
+            <Typography>Ready in {recipe.readyInMinutes} Minutes</Typography>
           </CardContent>
-        </Collapse>
-      </Card>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites" onClick={handleSave}>
+              {renderFavButton()}
+            </IconButton>
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+              onClick={onExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph>Ingredients:</Typography>
+              {renderIngredients}
+            </CardContent>
+          </Collapse>
+        </Card>
+      </Grid>
     </div>
   );
 };

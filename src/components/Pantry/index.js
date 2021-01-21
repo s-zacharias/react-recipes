@@ -9,15 +9,9 @@ const Pantry = ({ ingredients, setIngredients }) => {
   };
   return (
     <div>
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        spacing={2}
-        style={{ minHeight: '100vh' }}
-      >
+      <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item>
-          <Typography variant="h4">Add Ingredients to Your Pantry</Typography>
+          <Typography variant="h5">Add Ingredients to Your Pantry</Typography>
         </Grid>
         <Grid item>
           <NewIngredient onFormSubmit={onFormSubmit} />

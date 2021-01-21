@@ -18,17 +18,14 @@ const Home = () => {
           <Typography variant="h3">Welcome to Recipe Finder!</Typography>
           <Typography variant="h6">
             Feel free to search for recipes in two different ways! If you have
-            specific ingredients you would like to use, add them to you pantry
-            before clicking search by ingredients. In order to search for a
+            specific ingredients you would like to use, click search by
+            ingredients and them to your pantry. In order to search for a
             specific dish, go ahead and click search by dish and use the search
-            bar. If you find a recipe you like, click the heart icon to add it
-            to your saved recipes list.
+            bar. Once recipes are displayed, click on the name of the recipe to
+            be navigated to the full recipe. The required ingredients will be
+            displayed once you click the downwards arrow. If you find a recipe
+            you like, click the heart icon to add it to your saved recipes list.
           </Typography>
-        </Grid>
-        <Grid item>
-          <Button variant="outlined" xs={6}>
-            <Link to="/pantry">Add Ingredients to Your Pantry</Link>
-          </Button>
         </Grid>
         <Grid item>
           <Button variant="outlined" xs={6}>

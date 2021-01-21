@@ -9,14 +9,25 @@ import SearchBar from './SearchBar';
 const FetchRecipesByDish = ({ saved, setSaved }) => {
   const [dish, setDish] = useState('soup');
   const [recipeList, setRecipeList] = useState([]);
+  const [debouncedDish, setDebouncedDish] = useState(dish);
 
   const onFormSubmit = (dish) => {
     setDish(dish);
   };
 
   useEffect(() => {
-    fetchRecipeList(dish);
+    const timerId = setTimeout(() => {
+      setDebouncedDish(dish);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [dish]);
+
+  useEffect(() => {
+    fetchRecipeList(debouncedDish);
+  }, [debouncedDish]);
 
   const fetchRecipeList = async (items) => {
     const response = await spoontacular.get('/recipes/complexSearch', {

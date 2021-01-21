@@ -60,9 +60,6 @@ const NavBar = () => {
                 <Link to="/">Home</Link>
               </MenuItem>
               <MenuItem onClick={onClose}>
-                <Link to="/pantry">Pantry</Link>
-              </MenuItem>
-              <MenuItem onClick={onClose}>
                 <Link to="/searchByDish">Search by Dish</Link>
               </MenuItem>
               <MenuItem onClick={onClose}>

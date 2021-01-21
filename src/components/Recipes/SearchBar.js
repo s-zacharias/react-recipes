@@ -1,19 +1,22 @@
 import React from 'react';
-import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { FormControl, Button, TextField } from '@material-ui/core';
 
 const SearchBar = ({ onFormSubmit, dish, setDish }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     onFormSubmit(dish);
-    setDish('');
   };
 
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <FormControl>
-          <InputLabel>Search by the Dish</InputLabel>
-          <Input value={dish} onChange={(e) => setDish(e.target.value)} />
+        <FormControl fullWidth>
+          <TextField
+            label="Search by the Dish"
+            value={dish}
+            onChange={(e) => setDish(e.target.value)}
+            style={{ width: 450 }}
+          />
           <Button type="submit">Search</Button>
         </FormControl>
       </form>

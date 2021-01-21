@@ -3,11 +3,16 @@ import { v4 as uuidv4 } from 'uuid';
 import Grid from '@material-ui/core/Grid';
 import spoontacular from '../../apis/spoontacular';
 import RecipeCard from './RecipeCard';
+import Pantry from '../Pantry';
 import { Typography } from '@material-ui/core';
 
-const FetchRecipesByIngredients = ({ ingredients, saved, setSaved }) => {
+const FetchRecipesByIngredients = ({
+  ingredients,
+  setIngredients,
+  saved,
+  setSaved,
+}) => {
   const [recipeList, setRecipeList] = useState([]);
-
   let ingredientString = '';
   ingredients.forEach((ingredient, index) => {
     if (index === ingredients.length - 1) {
@@ -18,7 +23,9 @@ const FetchRecipesByIngredients = ({ ingredients, saved, setSaved }) => {
   });
 
   useEffect(() => {
-    fetchRecipeList(ingredientString);
+    if (ingredientString.length > 0) {
+      fetchRecipeList(ingredientString);
+    }
   }, [ingredientString]);
 
   const fetchRecipeList = async (items) => {
@@ -46,7 +53,6 @@ const FetchRecipesByIngredients = ({ ingredients, saved, setSaved }) => {
         ids: stringOfIds,
       },
     });
-    console.log('response2: ', response2);
     setRecipeList(response2.data);
   };
 
@@ -63,18 +69,44 @@ const FetchRecipesByIngredients = ({ ingredients, saved, setSaved }) => {
     );
   });
 
-  return (
-    <div>
-      <Grid container direction="column" alignItems="center" spacing={2}>
-        <Grid item>
-          <Typography variant="h3">Recipe Results by Ingredients</Typography>
+  if (ingredients.length === 0) {
+    return (
+      <div>
+        <Grid container direction="row" alignItems="space-center">
+          <Grid item>
+            <Pantry ingredients={ingredients} setIngredients={setIngredients} />
+          </Grid>
+          <Grid item>
+            <Typography variant="h3">
+              Add some ingredients to your pantry first!
+            </Typography>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container justify="center" spacing={2}>
-        {renderRecipeList}
-      </Grid>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <Pantry ingredients={ingredients} setIngredients={setIngredients} />
+          </Grid>
+          <Grid item>
+            <Grid container direction="column" alignItems="center" spacing={2}>
+              <Grid item>
+                <Typography variant="h5">
+                  Recipe Results by Ingredients
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container justify="center" spacing={2}>
+              {renderRecipeList}
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
 };
 
 export default FetchRecipesByIngredients;

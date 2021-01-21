@@ -30,6 +30,7 @@ const App = () => {
           <Route path="/searchByIngredients" exact>
             <FetchRecipesByIngredients
               ingredients={ingredients}
+              setIngredients={setIngredients}
               saved={saved}
               setSaved={setSaved}
             />
